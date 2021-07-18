@@ -107,7 +107,7 @@ require 'koneksi.php';
 
     <!-- Location -->
     <section id="location"> 
-      <div class="container">
+      <div class="container mb-3">
         <div class="row">
           <div class="col text-center">
             <h1>Location</h1>
@@ -129,12 +129,9 @@ require 'koneksi.php';
     <!-- End Location -->
 
     <!-- Footer -->
-      <footer class="page-footer font-small" id="footer">
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">© Team Capcay Copyright 2021
-      </div>
-      <!-- Copyright -->
-      </footer>
+      <?php
+        require 'footer.php';
+      ?>
     <!-- End Footer -->
     
     <!-- Option 1: Bootstrap Bundle with Popper -->
