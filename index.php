@@ -15,6 +15,8 @@ require 'koneksi.php';
     <!-- Sweetalert -->
     <script src="sweat/dist/sweetalert2.all.min.js"></script>
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/IconWeb.ico" type="image/x-icon">
     <title>E-Restoku</title>
   </head>
   <body>
@@ -59,7 +61,7 @@ require 'koneksi.php';
           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore ipsam quibusdam, quos sit excepturi maiores nihil asperiores nemo natus qui reiciendis dolorum minima quaerat reprehenderit, commodi nisi consequatur voluptatibus amet? Amet, reprehenderit. Nostrum voluptatibus quia quae illo fugiat quasi ad veniam officia aut, ipsa corrupti optio ea saepe dignissimos ratione.</p>
         </div>
       <div class="col-md-6 my-auto mx-auto">
-        <img src="img/Chef-cartoon-logo-vector-PNG.png" alt="Logo" width="250">
+        <img src="Chef-cartoon-logo-vector-PNG.png" alt="Logo" width="250">
         </div>
       </div>
     </div>
@@ -84,11 +86,11 @@ require 'koneksi.php';
             <a href="#" class="link-dark">Cemilan</a>
           </div>
 
-        <div class="row d-flex justify-content-center">
+        <div class="row ">
         <?php $ambil = $koneksi->query("Select * From menu"); ?>
         <?php while($permenu = $ambil->fetch_assoc()) { ?>
 
-          <div class="col-md-4 mb-3">
+          <div class="col-md-4 mb-3 d-flex justify-content-center">
             <div class="card" style="width: 18rem;">
               <img src="<?php echo $permenu['foto_menu']; ?>" class="card-img-top" alt="Ayam Goreng">
               <div class="card-body">

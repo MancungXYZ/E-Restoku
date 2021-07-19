@@ -3,6 +3,10 @@ session_start();
 
 require 'koneksi.php';
 
+if (empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
+  echo "<script>alert('Tidak ada barang yang dibeli');</script>";
+  echo "<script>location='index.php#menu';</script>";
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -142,39 +146,31 @@ require 'koneksi.php';
               //query id_pegawai
               $Pegawai = mysqli_query($koneksi, "Select * From pegawai");
               $ttd = mysqli_fetch_assoc($Pegawai);
+              //mengambil id_menu
+              $id_menu = $pecah['id_menu'];
+              //mengambil id_pegawai
               $pgw = $ttd['id_pegawai'];
               //mengambil data id_pesanan
               $data = $data['id_pesanan'];
               //mengambil data nama menu
               $menu = $pecah['nama_menu'];
-              //menghitung data
-              // $count = count(array($no));
 
-                $sql = array(
-                  'id_transaksi' => $transaksi,
-                  'id_pegawai' => $pgw,
-                  'id_menu' => $id_menu,
-                  'id_pesanan' => $data,
-                  'nama_menu' => $menu,
-                  'jumlah_menu' => $jumlah,
-                  'total_bayar' => $totalHarga,
-                  'tgl_transaksi' => $tgl
+              foreach ($_SESSION["keranjang"] as $id_menu => $jumlah) {
+                $sql = mysqli_query($koneksi, "Insert into transaksi (id_transaksi, id_pegawai, id_menu, id_pesanan, nama_menu, jumlah_menu, total_bayar, tgl_transaksi) VALUES('$transaksi', '$pgw', '$id_menu', '$data', '$menu', '$jumlah', '$totalHarga', '$tgl')");
+                if ($sql) {
+                  if ($koneksi->affected_rows > 0) { // jika ada penambahan data
+                    echo "<script>alert('Cetak dalam proses')</script>";
+                    echo "<script>window.print()</script>";
+                    // session_destroy();
+                  }
+                  } else {
+                  echo "<script>alert('Cetak gagal')</script>";
+                  }
+              } 
 
-                );
-                
-                $sql = "Insert into transaksi (id_transaksi, id_pegawai, id_menu, id_pesanan, nama_menu, jumlah_menu, total_bayar, tgl_transaksi) VALUES('$transaksi', '$pgw', '$id_menu', '$data', '$menu', '$jumlah', '$totalHarga', '$tgl')";
-                
-                $res = mysqli_query($koneksi, $sql);
+              // $res = mysqli_query($koneksi, $sql);
               
-              if ($res) {
-                if ($koneksi->affected_rows > 0) { // jika ada penambahan data
-                  echo "<script>alert('Cetak dalam proses')</script>";
-                  echo "<script>window.print()</script>";
-                  session_destroy();
-                }
-                } else {
-                echo "<script>alert('Cetak gagal')</script>";
-                }
+              
                 } else
                 echo "<script>alert('Koneksi Database gagal')</script>";
                 }
@@ -183,6 +179,9 @@ require 'koneksi.php';
         ?>
         
     </section>
+
+    <pre><?php print_r($_SESSION['keranjang']); ?></pre>
+
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

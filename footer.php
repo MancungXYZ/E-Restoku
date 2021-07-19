@@ -19,7 +19,7 @@
           <div class="col-xs-6 col-md-3">
             <h6>Kontak</h6>
             <ul class="footer-links">
-              <li><i class="fas fa-phone"></i> Telepon : (0232) 123456</li>
+              <li><i class="fas fa-phone-alt"></i> Telepon : (0232) 123456</li>
               <li><i class="fas fa-envelope"></i> Email : erestoku@gmail.com</li>
             </ul>
           </div>
