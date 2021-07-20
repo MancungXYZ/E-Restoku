@@ -149,7 +149,7 @@ require "validasi.php";
                 </tfoot>
                                 </table>
                             </div>
-                            <button class="btn btn-success mt-2" onclick=" window.open('report.php','_blank')"> Google</button>
+                            <button class="btn btn-success mt-2" onclick=" window.open('report.php','_blank')"><i class="fa fa-save"></i> Simpan PDF</button>
                         </div>
                     </div>
                     <!--End Advanced Tables -->
