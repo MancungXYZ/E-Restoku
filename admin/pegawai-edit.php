@@ -13,45 +13,56 @@ include "../koneksi.php";
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Edit Menu</title>
+    <title>Edit Data Pegawai</title>
   </head>
   <body>
 	<div class="container" style="margin-top:20px">
-		<h2>Edit Data Menu</h2>
+		<h2>Edit Data Pegawai</h2>
 		
 		<hr>
 		
 			<?php
-			if ( isset($_GET["id_menu"])) {
-			$id_menu = $_GET["id_menu"];
-				if ($ambil_data = mysqli_query($koneksi, "SELECT * FROM menu WHERE id_menu='$id_menu'")) {
-				$dataMenu = $ambil_data->fetch_assoc();
-				// cari data produk, kalau ada simpan di $databuku
+			if ( isset($_GET["id_pegawai"])) {
+			$id_pegawai = $_GET["id_pegawai"];
+				if ($ambil_data = mysqli_query($koneksi, "SELECT * FROM pegawai WHERE id_pegawai='$id_pegawai'")) {
+					$data_pegawai = $ambil_data->fetch_assoc();
 			?>
 
-			<form action="" method="">
+			<form action="" method="GET">
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Nama Menu</label>
+				<label class="col-sm-2 col-form-label">Nama Pegawai</label>
 				<div class="col-sm-10">
-					<input type="text" value="<?php echo $dataMenu["nama_menu"];?>" name="nama_menu" class="form-control" size="4" required>
+					<input type="text" value="<?php echo $data_pegawai["nama_pegawai"];?>" name="nama_pegawai" class="form-control" required>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Harga</label>
+				<label class="col-sm-2 col-form-label">Password</label>
 				<div class="col-sm-10">
-					<input type="text" value="<?php echo $dataMenu["harga"];?>" name="harga" class="form-control" required>
+					<input type="text" value="<?php echo $data_pegawai["password"];?>" name="password" class="form-control" required>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Deskripsi</label>
+				<label class="col-sm-2 col-form-label">Jenis_Kelamin</label>
 				<div class="col-sm-10">
-					<input type="text" value="<?php echo $dataMenu["deskripsi"];?>" name="deskripsi" class="form-control" required>
+					<input type="text" value="<?php echo $data_pegawai["jenis_kelamin"];?>" name="jenis_kelamin" class="form-control" required>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Foto Menu</label>
+				<label class="col-sm-2 col-form-label">Alamat</label>
 				<div class="col-sm-10">
-					<input type="text" value="<?php echo $dataMenu["foto_menu"];?>" name="foto_menu" class="form-control" required>
+					<input type="text" value="<?php echo $data_pegawai["alamat"];?>" name="alamat" class="form-control" required>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">No HP</label>
+				<div class="col-sm-10">
+					<input type="text" value="<?php echo $data_pegawai["no_hp"];?>" name="no_hp" class="form-control" required>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Posisi</label>
+				<div class="col-sm-10">
+					<input type="text" value="<?php echo $data_pegawai["posisi"];?>" name="posisi" class="form-control" required>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -64,12 +75,12 @@ include "../koneksi.php";
 		</form>
 			<?php
 			} else
-				echo "Menu dengan Kode : $id_menu tidak ada. Edit data dibatalkan";
+				echo "Menu dengan Kode : $id_pegawai tidak ada. Edit data dibatalkan!";
 			?>
 
 		<?php
 		} else
-			echo "Id Menu tidak valid, Edit dibatalkan";
+			echo "Id pegawai tidak valid, Edit dibatalkan!";
 		?>
 	</div>
 

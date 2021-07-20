@@ -24,7 +24,10 @@ require 'koneksi.php';
     <!-- NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">E-Restoku</a>
+          <a class="navbar-brand" href="index.php">
+          <img src="img/restoku.png" alt="" width="50" height="30" class="d-inline-block align-text-top">
+            E-Restoku
+          </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -41,12 +44,57 @@ require 'koneksi.php';
       </nav>
     <!-- End NavBar -->
 
+    <!-- Carousel -->
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/ayam.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Welcome to E-Restoku</h5>
+        <p>Where Taste Combine With Moments.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="img/slide2.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Welcome to E-Restoku</h5>
+        <p>Where Taste Combine With Moments.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="img/slide.png" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Welcome to E-Restoku</h5>
+        <p>Where Taste Combine With Moments.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+    <!-- End Carousel -->
+
+
+
     <!-- Jumbotron -->
-    <div class="jumbotron jumbotron-fluid">
+    <!-- <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Welcome to E-Restoku<br>Where Taste Combine <br> With Moments.</h1>
         </div>
-    </div>
+    </div> -->
     <!-- End Jumbotron -->
 
     <!-- About Us -->
@@ -56,7 +104,7 @@ require 'koneksi.php';
       <div class="col">
         <h1>About Us</h1>
       </div>
-      <div class="row justify-content-center fs-5 text-center mt-5">
+      <div class="row justify-content-center fs-5 text-center mt-3">
         <div class="col-md-6 my-auto mx-auto">
           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore ipsam quibusdam, quos sit excepturi maiores nihil asperiores nemo natus qui reiciendis dolorum minima quaerat reprehenderit, commodi nisi consequatur voluptatibus amet? Amet, reprehenderit. Nostrum voluptatibus quia quae illo fugiat quasi ad veniam officia aut, ipsa corrupti optio ea saepe dignissimos ratione.</p>
         </div>

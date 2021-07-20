@@ -1,9 +1,12 @@
-﻿<!DOCTYPE html>
+﻿<?php
+    include "../koneksi.php";
+?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
       <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Bootstrap Admin Template : Binary Admin</title>
+    <title>.:: Dashboard ::.</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
@@ -28,9 +31,9 @@
                 <a class="navbar-brand" href="index.html">E-Restoku</a> 
             </div>
   <div style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+              padding: 15px 50px 5px 50px;
+              float: right;
+              font-size: 16px;"> Last access : <?php echo date("d-m-Y"); ?> &nbsp; <a href="../index.php" class="btn btn-danger square-btn-adjust">Log Out</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -41,19 +44,17 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
 					</li>
 					
                     <li>
-                        <a class="active-menu"  href="index.php"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a class="active-menu"  href="index.php"><i class="fa fa-dashboard"></i> Pegawai</a>
                     </li>
                      <li>
-                        <a  href="pembelian.php"><i class="fa fa-desktop fa-3x"></i> Pembelian</a>
+                        <a  href="pembelian.php"><i class="fa fa-shopping-cart"></i> Pembelian</a>
                     </li>
                       <li  >
-                        <a  href="laporan.php"><i class="fa fa-table fa-3x"></i> Laporan</a>
+                        <a  href="laporan.php"><i class="fa fa-table"></i> Laporan</a>
                     </li>
                     <li  >
-                        <a  href="../admin/logout.php"><i class="fa fa-edit fa-3x"></i> Logout </a>
-                    </li>				
-					
-					                   	
+                        <a  href="../admin/logout.php"><i class="fa fa-sign-out"></i> Sign Out </a>
+                    </li>			                 	
                 </ul>
                
             </div>
@@ -65,10 +66,61 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
                 <div class="row">
                     <div class="col-md-12">
                      <h2>Admin Dashboard</h2>   
-                        <h5>Welcome Jhon Deo , Love to see you back. </h5>
+                        <h5>Dibawah ini merupakan dashboard pegawai E-Restoku</h5>
                     </div>
                 </div>
-                                   
+                <table class="table table-striped table-hover table-bordered" id="mytable">
+			<thead class="thead-dark text-center">
+				<tr>
+                    <th>Id Pegawai</th>
+					<th>Nama Pegawai</th>
+					<th>Password</th>
+					<th>Jenis Kelamin</th>
+					<th>Alamat</th>
+					<th>No HP</th>
+                    <th>Posisi</th>
+                    <th>Tindakan</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				$sql = mysqli_query($koneksi, "SELECT * FROM pegawai ORDER BY id_pegawai") or die (mysqli_error($koneksi));
+				//jika query diatas menghasilkan nilai > 0 maka menjalankan script di bawah if...
+				if(mysqli_num_rows($sql) > 0) {
+					//membuat variabel $no untuk menyimpan nomor urut
+					//melakukan perulangan while dengan dari dari query $sql
+					while($data = mysqli_fetch_assoc($sql)) {
+						//menampilkan data perulangan
+						echo '
+						<tr>
+							<td>'.$data['id_pegawai'].'</td>
+							<td>'.$data['nama_pegawai'].'</td>
+							<td>'.$data['password'].'</td>
+							<td>'.$data['jenis_kelamin'].'</td>
+                            <td>'.$data['alamat'].'</td>
+                            <td>'.$data['no_hp'].'</td>
+                            <td>'.$data['posisi'].'</td>
+							<td>
+								<a href="pegawai-edit.php?id_pegawai='.$data['id_pegawai'].'" class="badge badge-warning">Edit</a>
+								<a href="pegawai-delete.php?id_pegawai='.$data['id_pegawai'].'" class="badge badge-danger" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
+							</td>
+						</tr>
+						';
+						
+					}
+				//jika query menghasilkan nilai 0
+				} else {
+					echo '
+					<tr>
+						<td colspan="6">Tidak ada data.</td>
+					</tr>
+					';
+				}
+				?>
+			<tbody>
+            
+		</table>        
+        <a class="btn btn-primary mb-2" href="pegawai-tambah.php" role="button">Tambah Pegawai</a> 
              <!-- /. PAGE INNER  -->
             </div>
          <!-- /. PAGE WRAPPER  -->

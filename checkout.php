@@ -147,7 +147,7 @@ if (empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
               $Pegawai = mysqli_query($koneksi, "Select * From pegawai");
               $ttd = mysqli_fetch_assoc($Pegawai);
               //mengambil id_menu
-              $id_menu = $pecah['id_menu'];
+              $id_menu = $koneksi->query("Select * From menu Where id_menu=$id_menu");
               //mengambil id_pegawai
               $pgw = $ttd['id_pegawai'];
               //mengambil data id_pesanan
@@ -169,7 +169,6 @@ if (empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
               } 
 
               // $res = mysqli_query($koneksi, $sql);
-              
               
                 } else
                 echo "<script>alert('Koneksi Database gagal')</script>";

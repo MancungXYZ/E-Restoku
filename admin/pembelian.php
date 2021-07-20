@@ -4,14 +4,14 @@ include "../koneksi.php";
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-      <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Bootstrap Admin Template : Binary Admin</title>
+    <title>.:: Transaksi Produk ::.</title>
 	<!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-        <!-- CUSTOM STYLES-->
+    <!-- CUSTOM STYLES-->
     <link href="assets/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
@@ -28,10 +28,10 @@ include "../koneksi.php";
                 </button>
                 <a class="navbar-brand" href="index.html">E-Restoku</a> 
             </div>
-  <div style="color: white;
-padding: 15px 50px 5px 50px;
-float: right;
-font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="../admin/logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+    <div style="color: white;
+                padding: 15px 50px 5px 50px;
+                float: right;
+                font-size: 16px;"> Last access : 19 July 2021 &nbsp; <a href="../admin/logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -42,16 +42,16 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="../admin/logout.php
 					</li>
 				
                     <li>
-                        <a  href="index.php"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a  href="index.php"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                       <li>
-                        <a class="active-menu"   href="pembelian.php"><i class="fa fa-desktop fa-3x"></i> Pembelian</a>
+                        <a class="active-menu"   href="pembelian.php"><i class="fa fa-shopping-cart"></i> Pembelian</a>
                     </li>
                       <li  >
-                        <a  href="laporan.php"><i class="fa fa-table fa-3x"></i> Laporan</a>
+                        <a  href="laporan.php"><i class="fa fa-table"></i> Laporan</a>
                     </li>
                     <li  >
-                        <a  href="../admin/logout.php"><i class="fa fa-edit fa-3x"></i> Logout </a>
+                        <a  href="../admin/logout.php"><i class="fa fa-sign-out"></i> Logout </a>
                     </li>				
 					
                 </ul>
@@ -65,7 +65,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="../admin/logout.php
                 <div class="row">
                     <div class="col-md-12">
                      <h2>Pembelian</h2>   
-                        <h5>Welcome Jhon Deo, Love to see you back. </h5>
+                        <h5>Berikut Daftar Menu E-Restoku</h5>
                        
                     </div>
                 </div>
@@ -75,7 +75,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="../admin/logout.php
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered" id="mytable">
+            <table class="table table-striped table-hover table-bordered" id="mytable">
 			<thead class="thead-dark text-center">
 				<tr>
                     <th>Id Menu</th>
@@ -88,7 +88,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="../admin/logout.php
 			</thead>
 			<tbody>
 				<?php
-				$sql = mysqli_query($koneksi, "Select * From menu ORDER BY id_menu") or die (mysqli_error($koneksi));
+				$sql = mysqli_query($koneksi, "SELECT * FROM menu ORDER BY id_menu") or die (mysqli_error($koneksi));
 				//jika query diatas menghasilkan nilai > 0 maka menjalankan script di bawah if...
 				if(mysqli_num_rows($sql) > 0) {
 					//membuat variabel $no untuk menyimpan nomor urut
