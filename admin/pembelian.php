@@ -1,5 +1,6 @@
 ﻿<?php
 include "../koneksi.php";
+include "validasi.php";
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -31,7 +32,7 @@ include "../koneksi.php";
     <div style="color: white;
                 padding: 15px 50px 5px 50px;
                 float: right;
-                font-size: 16px;"> Last access : 19 July 2021 &nbsp; <a href="../admin/logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+                font-size: 16px;"> Last access : <?php echo date("d M Y"); ?> &nbsp; <a href="../admin/logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -69,6 +70,7 @@ include "../koneksi.php";
                        
                     </div>
                 </div>
+                
                 <div class="panel panel-default">
                         <div class="panel-heading">
                              Menu E-Restoku

@@ -1,5 +1,6 @@
 ﻿<?php
 include "../koneksi.php";
+require "validasi.php";
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -19,6 +20,7 @@ include "../koneksi.php";
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
      <!-- TABLE STYLES-->
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+
 </head>
 <body>
     <div id="wrapper">
@@ -35,7 +37,7 @@ include "../koneksi.php";
   <div style="color: white;
               padding: 15px 50px 5px 50px;
               float: right;
-              font-size: 16px;"> Last access : 19 July 2021 &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+              font-size: 16px;"> Last access : <?php echo date("d M Y"); ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -89,43 +91,41 @@ include "../koneksi.php";
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
             <thead class="thead-dark text-center">
 				<tr>
+                    <th>No</th>
                     <th>Id Transaksi</th>
 					<th>Id Pegawai</th>
 					<th>Id Menu</th>
 					<th>Id Pesanan</th>
-					<th>Nama Menu</th>
-					<th>Jumlah Menu</th>
+					<th>Nama Pelanggan</th>
+					<th>No Meja</th>
                     <th>Total Bayar</th>
                     <th>Tanggal Transaksi</th>
-                    <th>Tindakan</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php
-				$sql = mysqli_query($koneksi, "SELECT * FROM transaksi ORDER BY id_transaksi") or die (mysqli_error($koneksi));
+				$sql = mysqli_query($koneksi, "SELECT transaksi.id_transaksi, transaksi.id_pegawai, transaksi.id_menu, transaksi.id_pesanan, pelanggan.nama_pelanggan, pelanggan.no_meja, transaksi.total_bayar, transaksi.tgl_transaksi FROM transaksi JOIN pelanggan ON transaksi.id_pesanan=pelanggan.id_pesanan") or die (mysqli_error($koneksi));
 				//jika query diatas menghasilkan nilai > 0 maka menjalankan script di bawah if...
 				if(mysqli_num_rows($sql) > 0) {
 					//membuat variabel $no untuk menyimpan nomor urut
 					//melakukan perulangan while dengan dari dari query $sql
+                    $no=1;
 					while($data = mysqli_fetch_assoc($sql)) {
 						//menampilkan data perulangan
 						echo '
 						<tr>
+                            <td>'.$no.'</td>
 							<td>'.$data['id_transaksi'].'</td>
 							<td>'.$data['id_pegawai'].'</td>
                             <td>'.$data['id_menu'].'</td>
                             <td>'.$data['id_pesanan'].'</td>
-                            <td>'.$data['nama_menu'].'</td>
-                            <td>'.$data['jumlah_menu'].'</td>
+                            <td>'.$data['nama_pelanggan'].'</td>
+                            <td>'.$data['no_meja'].'</td>
 							<td> Rp. '.$data['total_bayar'].'</td>
 							<td>'.$data['tgl_transaksi'].'</td>
-							<td>
-								<a href="transaksi-edit.php?id_transaksi='.$data['id_transaksi'].'" class="badge badge-warning">Edit</a>
-								<a href="transaksi-delete.php?id_transaksi='.$data['id_transaksi'].'" class="badge badge-danger" onclick="return confirm(\'Yakin ingin menghapus data ini?\')">Delete</a>
-							</td>
 						</tr>
 						';
-						
+						$no++;
 					}
 				//jika query menghasilkan nilai 0
 				} else {
@@ -136,9 +136,20 @@ include "../koneksi.php";
 					';
 				}
 				?>
+
+                <?php
+                    $sql = mysqli_query($koneksi, "Select SUM(total_bayar) AS laba From transaksi");
+                    $pendapatan = $sql->fetch_object()->laba;
+                ?>
+                <tfoot>
+                    <tr>
+                        <td colspan="8">Total Pendapatan</td>
+                        <td>Rp. <?php echo number_format ($pendapatan) ?></td>
+                    </tr>
+                </tfoot>
                                 </table>
                             </div>
-                            
+                            <button class="btn btn-success mt-2" onclick=" window.open('report.php','_blank')"> Google</button>
                         </div>
                     </div>
                     <!--End Advanced Tables -->
@@ -150,14 +161,15 @@ include "../koneksi.php";
             </div>
          <!-- /. PAGE WRAPPER  -->
      <!-- /. WRAPPER  -->
+    
+
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.10.2.js"></script>
-      <!-- BOOTSTRAP SCRIPTS -->
+    <!-- BOOTSTRAP SCRIPTS -->
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- METISMENU SCRIPTS -->
     <script src="assets/js/jquery.metisMenu.js"></script>
      <!-- DATA TABLE SCRIPTS -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
         <script>

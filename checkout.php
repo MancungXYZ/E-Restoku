@@ -147,7 +147,7 @@ if (empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
               $Pegawai = mysqli_query($koneksi, "Select * From pegawai");
               $ttd = mysqli_fetch_assoc($Pegawai);
               //mengambil id_menu
-              $id_menu = $koneksi->query("Select * From menu Where id_menu=$id_menu");
+              $id_menu = $pecah['id_menu'];
               //mengambil id_pegawai
               $pgw = $ttd['id_pegawai'];
               //mengambil data id_pesanan
@@ -155,20 +155,27 @@ if (empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
               //mengambil data nama menu
               $menu = $pecah['nama_menu'];
 
-              foreach ($_SESSION["keranjang"] as $id_menu => $jumlah) {
-                $sql = mysqli_query($koneksi, "Insert into transaksi (id_transaksi, id_pegawai, id_menu, id_pesanan, nama_menu, jumlah_menu, total_bayar, tgl_transaksi) VALUES('$transaksi', '$pgw', '$id_menu', '$data', '$menu', '$jumlah', '$totalHarga', '$tgl')");
-                if ($sql) {
-                  if ($koneksi->affected_rows > 0) { // jika ada penambahan data
-                    echo "<script>alert('Cetak dalam proses')</script>";
-                    echo "<script>window.print()</script>";
-                    // session_destroy();
-                  }
-                  } else {
-                  echo "<script>alert('Cetak gagal')</script>";
-                  }
-              } 
+              //testing insert pembelian
+              // foreach ($_SESSION["keranjang"] as $id_menu => $jumlah) {
+              //   $sql2 = mysqli_query($koneksi, "INSERT INTO pembelian(id_menu, nama_menu, jumlah) VALUES ('$id_menu', '$menu', '$jumlah')");
+              // }
 
-              // $res = mysqli_query($koneksi, $sql);
+              // foreach ($_SESSION["keranjang"] as $id_menu => $jumlah) {
+              //   $sql = mysqli_query($koneksi, "Insert into transaksi (id_transaksi, id_pegawai, id_menu, id_pesanan, nama_menu, jumlah_menu, total_bayar, tgl_transaksi) VALUES('$transaksi', '$pgw', '$id_menu', '$data', '$menu', '$jumlah', '$totalHarga', '$tgl')");
+                
+              // } 
+
+              $sql = mysqli_query($koneksi, "Insert into transaksi (id_transaksi, id_pegawai, id_menu, id_pesanan, nama_menu, jumlah_menu, total_bayar, tgl_transaksi) VALUES('$transaksi', '$pgw', '$id_menu', '$data', '$menu', '$jumlah', '$totalHarga', '$tgl')");
+              
+              if ($sql) {
+                if ($koneksi->affected_rows > 0) { // jika ada penambahan data
+                  echo "<script>alert('Cetak dalam proses')</script>";
+                  echo "<script>window.print()</script>";
+                  // session_destroy();
+                }
+                } else {
+                echo "<script>alert('Cetak gagal')</script>";
+                }
               
                 } else
                 echo "<script>alert('Koneksi Database gagal')</script>";
@@ -178,8 +185,6 @@ if (empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
         ?>
         
     </section>
-
-    <pre><?php print_r($_SESSION['keranjang']); ?></pre>
 
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

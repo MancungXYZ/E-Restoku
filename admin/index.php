@@ -1,5 +1,7 @@
 ﻿<?php
     include "../koneksi.php";
+    include "validasi.php";
+    
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -28,12 +30,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">E-Restoku</a> 
+                <a class="navbar-brand" href="index.php">E-Restoku</a> 
             </div>
   <div style="color: white;
               padding: 15px 50px 5px 50px;
               float: right;
-              font-size: 16px;"> Last access : <?php echo date("d-m-Y"); ?> &nbsp; <a href="../index.php" class="btn btn-danger square-btn-adjust">Log Out</a> </div>
+              font-size: 16px;"> Last access : <?php echo date("d M Y"); ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Log Out</a> </div>
         </nav>   
            <!-- /. NAV TOP  -->
                 <nav class="navbar-default navbar-side" role="navigation">
@@ -53,7 +55,7 @@
                         <a  href="laporan.php"><i class="fa fa-table"></i> Laporan</a>
                     </li>
                     <li  >
-                        <a  href="../admin/logout.php"><i class="fa fa-sign-out"></i> Sign Out </a>
+                        <a  href="../admin/logout.php"><i class="fa fa-sign-out"></i> Log Out </a>
                     </li>			                 	
                 </ul>
                
@@ -65,7 +67,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Admin Dashboard</h2>   
+                     <h2>Dashboard Pegawai</h2>
                         <h5>Dibawah ini merupakan dashboard pegawai E-Restoku</h5>
                     </div>
                 </div>
