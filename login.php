@@ -17,17 +17,17 @@ require 'koneksi.php';
 
 if ( isset($_POST['submit']) ) {
   
-  $email = $_POST["email"];
+  $id_pegawai = $_POST["id_pegawai"];
   $password = $_POST["password"];
 
-  $get_user = "select * from user where email = '$email'";
+  $get_user = "select * from pegawai where id_pegawai = '$id_pegawai'";
   $result = mysqli_query($koneksi, $get_user);
 
   $data = mysqli_fetch_array($result);
   
   if ($password == $data['password'] ) {
     session_start();
-    $_SESSION["email"] = $email;
+    $_SESSION["id_pegawai"] = $id_pegawai;
     $_SESSION["password"] = $password;
     $_SESSION["status"] = "login";
     header("Location: admin/index.php");
@@ -68,7 +68,7 @@ if ( isset($_POST['submit']) ) {
         <h2 class="text-center">Log in</h2>  
 
         <div class="form-group">
-            <input type="email" name="email" class="form-control" placeholder="Email" required="required">
+            <input type="text" name="id_pegawai" class="form-control" placeholder="ID Pegawai" required="required">
         </div>
         <div class="form-group">
             <input type="password" name="password" class="form-control" placeholder="Password" required="required">

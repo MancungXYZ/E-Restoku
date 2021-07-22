@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-sm-12 col-md-6">
             <h6>About</h6>
-            <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus dolorem excepturi qui necessitatibus culpa dolores ab earum ullam explicabo cumque. Est earum labore neque veniam.</p>
+            <p class="text-justify">E-Restoku merupakan inovasi dari restoran unikom, yang sebelumnya masih belum di digitalisasi. Namun, karena ide kreatif dari sang manajer E-Restoku pun didirikan. Karena agar memudahkan pelanggan yang ingin membeli tanpa perlu pergi keluar rumah. Mengikuti perkembangan zaman, yang mana segalanya bisa dilakukan secara online.</p>
           </div>
 
           <div class="col-xs-6 col-md-3">

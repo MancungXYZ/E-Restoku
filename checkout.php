@@ -156,9 +156,9 @@ if (empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
               $menu = $pecah['nama_menu'];
 
               //testing insert pembelian
-              // foreach ($_SESSION["keranjang"] as $id_menu => $jumlah) {
-              //   $sql2 = mysqli_query($koneksi, "INSERT INTO pembelian(id_menu, nama_menu, jumlah) VALUES ('$id_menu', '$menu', '$jumlah')");
-              // }
+              foreach ($_SESSION["keranjang"] as $id_menu => $jumlah):
+                $sql = mysqli_query($koneksi, "INSERT INTO pembelian(id_transaksi, id_menu, jumlah) VALUES ('$transaksi', '$id_menu', '$jumlah')");
+              endforeach;
 
               // foreach ($_SESSION["keranjang"] as $id_menu => $jumlah) {
               //   $sql = mysqli_query($koneksi, "Insert into transaksi (id_transaksi, id_pegawai, id_menu, id_pesanan, nama_menu, jumlah_menu, total_bayar, tgl_transaksi) VALUES('$transaksi', '$pgw', '$id_menu', '$data', '$menu', '$jumlah', '$totalHarga', '$tgl')");
@@ -171,7 +171,7 @@ if (empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
                 if ($koneksi->affected_rows > 0) { // jika ada penambahan data
                   echo "<script>alert('Cetak dalam proses')</script>";
                   echo "<script>window.print()</script>";
-                  // session_destroy();
+                  session_destroy();
                 }
                 } else {
                 echo "<script>alert('Cetak gagal')</script>";
@@ -184,6 +184,7 @@ if (empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
                 
         ?>
         
+
     </section>
 
 

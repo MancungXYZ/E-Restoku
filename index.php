@@ -37,7 +37,7 @@ require 'koneksi.php';
               <a class="nav-link" href="#about">About Us</a>
               <a class="nav-link" href="#menu">Menu</a>
               <a class="nav-link" href="#location">Location</a>
-              <a class="btn btn-primary" href="login.php" role="button">Login</a>
+              <a class="btn btn-primary rounded-pill " href="login.php" role="button">Login</a>
             </div>
           </div>
         </div>
@@ -106,7 +106,7 @@ require 'koneksi.php';
       </div>
       <div class="row justify-content-center fs-5 text-center mt-3">
         <div class="col-md-6 my-auto mx-auto">
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore ipsam quibusdam, quos sit excepturi maiores nihil asperiores nemo natus qui reiciendis dolorum minima quaerat reprehenderit, commodi nisi consequatur voluptatibus amet? Amet, reprehenderit. Nostrum voluptatibus quia quae illo fugiat quasi ad veniam officia aut, ipsa corrupti optio ea saepe dignissimos ratione.</p>
+          <p>E-Restoku merupakan inovasi dari restoran unikom, yang sebelumnya masih belum di digitalisasi. Namun, karena ide kreatif dari sang manajer E-Restoku pun didirikan. Karena agar memudahkan pelanggan yang ingin membeli tanpa perlu pergi keluar rumah. Mengikuti perkembangan zaman, yang mana segalanya bisa dilakukan secara online.</p>
         </div>
       <div class="col-md-6 my-auto mx-auto">
         <img src="Chef-cartoon-logo-vector-PNG.png" alt="Logo" width="250">
@@ -134,12 +134,12 @@ require 'koneksi.php';
             <a href="#" class="link-dark">Cemilan</a>
           </div>
 
-        <div class="row ">
+        <div class="row">
         <?php $ambil = $koneksi->query("Select * From menu"); ?>
         <?php while($permenu = $ambil->fetch_assoc()) { ?>
 
           <div class="col-md-4 mb-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
+            <div class="card shadow" style="width: 18rem;">
               <img src="<?php echo $permenu['foto_menu']; ?>" class="card-img-top" alt="Ayam Goreng">
               <div class="card-body">
                 <h5 class="card-title"><?php echo $permenu['nama_menu']; ?></h5>

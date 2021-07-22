@@ -142,7 +142,7 @@ if (empty($_SESSION["keranjang"]) OR !isset($_SESSION["keranjang"])) {
                     <?php endforeach ?>
                 </tbody>
             </table>
-            <a href="index.php#menu" class="btn btn-primary">Lanjut Belanja</a>
+            <a href="index.php#menu" class="btn btn-primary mt-2 mb-2">Lanjut Belanja</a>
         </div>
     </section>
     
