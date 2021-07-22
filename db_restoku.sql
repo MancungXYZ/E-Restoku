@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Jul 2021 pada 03.38
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.8
+-- Generation Time: Jul 22, 2021 at 04:19 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `menu`
+-- Table structure for table `menu`
 --
 
 CREATE TABLE `menu` (
@@ -37,7 +36,7 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `menu`
+-- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga`, `deskripsi`, `foto_menu`) VALUES
@@ -57,7 +56,7 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `harga`, `deskripsi`, `foto_menu`) V
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pegawai`
+-- Table structure for table `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -71,7 +70,7 @@ CREATE TABLE `pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pegawai`
+-- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `password`, `jenis_kelamin`, `alamat`, `no_hp`, `posisi`) VALUES
@@ -82,7 +81,7 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `password`, `jenis_kelamin`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pelanggan`
+-- Table structure for table `pelanggan`
 --
 
 CREATE TABLE `pelanggan` (
@@ -93,11 +92,10 @@ CREATE TABLE `pelanggan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pelanggan`
+-- Dumping data for table `pelanggan`
 --
 
 INSERT INTO `pelanggan` (`id_pesanan`, `nama_pelanggan`, `no_meja`, `jumlah_pelanggan`) VALUES
-(2, 'ojoj', 1, 2),
 (1090, 'Midoriya', 4, 2),
 (1111, 'Mancung', 3, 3),
 (1122, 'Rachman', 4, 4),
@@ -116,17 +114,44 @@ INSERT INTO `pelanggan` (`id_pesanan`, `nama_pelanggan`, `no_meja`, `jumlah_pela
 (6677, 'Milo', 3, 2),
 (6767, 'Mamah', 10, 4),
 (7523, 'Juju', 4, 5),
+(7644, 'Kakei', 8, 5),
 (7665, 'Rachman A', 14, 3),
 (7721, 'Shoto', 8, 4),
 (7878, 'Naruto', 3, 3),
 (8874, 'Mumuh', 9, 4),
 (8888, 'Zilong', 11, 3),
-(9091, 'ASD', 4, 4);
+(9091, 'ASD', 4, 4),
+(9712, 'Bos Besar', 15, 10);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
+-- Table structure for table `pembelian`
+--
+
+CREATE TABLE `pembelian` (
+  `id_transaksi` int(11) NOT NULL,
+  `id_menu` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pembelian`
+--
+
+INSERT INTO `pembelian` (`id_transaksi`, `id_menu`, `jumlah`) VALUES
+(5752, 2, 3),
+(5752, 6, 1),
+(9485, 3, 1),
+(9485, 5, 1),
+(9485, 8, 1),
+(9485, 1, 1),
+(9485, 14, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -141,61 +166,37 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `transaksi`
+-- Dumping data for table `transaksi`
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_pegawai`, `id_menu`, `id_pesanan`, `nama_menu`, `jumlah_menu`, `total_bayar`, `tgl_transaksi`) VALUES
-(1614, 1234, 6, 9091, 'Kentang Goreng', 1, 18000, '2021-07-19'),
-(4390, 1234, 6, 9091, 'Kentang Goreng', 1, 18000, '2021-07-19'),
-(5037, 1234, 6, 9091, 'Kentang Goreng', 1, 18000, '2021-07-19'),
-(5069, 1234, 6, 9091, 'Kentang Goreng', 1, 18000, '2021-07-19'),
-(6464, 1234, 6, 9091, 'Kentang Goreng', 1, 18000, '2021-07-19'),
-(6803, 1234, 6, 9091, 'Kentang Goreng', 1, 18000, '2021-07-19'),
-(7684, 1234, 8, 9091, 'Kentang Goreng', 1, 18000, '2021-07-19');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `user`
---
-
-CREATE TABLE `user` (
-  `id` int(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `user`
---
-
-INSERT INTO `user` (`id`, `email`, `password`) VALUES
-(1, 'reihanwiyanda@gmail.com', '123');
+(5752, 1234, 6, 7644, 'Teh Manis', 1, 40500, '2021-07-22'),
+(9485, 1234, 14, 9712, 'Mie Goreng', 2, 60000, '2021-07-22');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `menu`
+-- Indexes for table `menu`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_menu`);
 
 --
--- Indeks untuk tabel `pegawai`
+-- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`);
 
 --
--- Indeks untuk tabel `pelanggan`
+-- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`id_pesanan`);
 
 --
--- Indeks untuk tabel `transaksi`
+-- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
@@ -204,39 +205,27 @@ ALTER TABLE `transaksi`
   ADD KEY `id_pesanan` (`id_pesanan`);
 
 --
--- Indeks untuk tabel `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `menu`
+-- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `transaksi`
+-- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7685;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9486;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `transaksi`
+-- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_pesanan`) REFERENCES `pelanggan` (`id_pesanan`),
